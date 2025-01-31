@@ -1,18 +1,18 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
-import { ConfigService } from '@nestjs/config';
+import { Recette } from './recettes/recettes.model';
+import { CreateRecetteDto } from './recettes/dto/createRecettes.dto';
 
 @Injectable()
-export class AppService {
-  private logger = new Logger(AppService.name);
+export class RecettesService {
+  constructor(
+    @InjectModel('Recette') private readonly recetteModel: Model<Recette>,
+  ) {}
 
-  constructor(private configService: ConfigService) {
-    const mongoDbHost = configService.get('MONGO_DB_HOST');
-    this.logger.debug(`MongoDB Host: ${mongoDbHost}`);
-  }
-
-  getHello(): string {
-    // this.configService...
-    return 'Hello World!';
+  async create(createRecetteDto: CreateRecetteDto): Promise<Recette> {
+    const newRecette = new this.recetteModel(createRecetteDto);
+    return newRecette.save();
   }
 }

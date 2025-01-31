@@ -1,30 +1,15 @@
-import { ConfigModule, ConfigService } from '@nestjs/config';
-
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsersModule } from './users/users.module';
+import { RecettesController } from './recettes/recettes.controller';
+import { RecettesService } from './recettes/recettes.service';
+import { RecetteSchema } from './recettes/recettes.model';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    UsersModule,
-    /*MongooseModule.forRoot('mongodb://root:root@localhost:27017/sgbd', {
-      authSource: 'admin',
-    }),*/
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        return {
-          uri: `mongodb://${configService.get('MONGO_DB_USER')}:${configService.get('MONGO_DB_PASSWORD')}@${configService.get('MONGO_DB_HOST')}:${configService.get('MONGO_DB_PORT')}/${configService.get('MONGO_DB_NAME')}`,
-          authSource: 'admin',
-        };
-      },
-    }),
+    MongooseModule.forRoot('mongodb://localhost:27017/recettes-cuisines'),
+    MongooseModule.forFeature([{ name: 'Recette', schema: RecetteSchema }]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [RecettesController],
+  providers: [RecettesService],
 })
 export class AppModule {}

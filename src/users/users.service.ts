@@ -20,7 +20,8 @@ export class UsersService {
   }
 
   async findById(id: string) {
-    // return await this.userModel.findById(id);
+    // return await this.userModel.findById(id);0
+    .
     const users = await this.userModel.aggregate([
       { $match: { _id: new Types.ObjectId(id) } },
       {
