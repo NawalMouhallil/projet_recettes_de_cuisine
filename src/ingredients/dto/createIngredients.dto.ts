@@ -7,6 +7,12 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
+export class CreateIngredientDto {
+  
+  nom: string;
+  quantite: number;
+}
+
 class IngredientQuantiteDto {
   @IsString()
   @IsNotEmpty()
