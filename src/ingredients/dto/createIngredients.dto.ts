@@ -1,16 +1,14 @@
-import {
-  IsString,
-  IsArray,
-  ValidateNested,
-  IsNumber,
-  IsNotEmpty,
-} from 'class-validator';
+import { IsString, IsArray, ValidateNested, IsNotEmpty } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateIngredientDto {
-  
+  @IsString()
+  @IsNotEmpty()
   nom: string;
-  quantite: number;
+
+  @IsString()
+  @IsNotEmpty()
+  unite: string;
 }
 
 class IngredientQuantiteDto {
@@ -18,9 +16,9 @@ class IngredientQuantiteDto {
   @IsNotEmpty()
   ingredient: string;
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  quantite: number;
+  quantite: string;
 }
 
 export class CreateRecetteDto {

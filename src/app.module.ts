@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RecettesController } from './recettes/recettes.controller';
 import { RecettesService } from './recettes/recettes.service';
-import { RecetteSchema } from './recettes/recettes.model';
+import { RecetteSchema } from './recettes/recettes.module';
 import { IngredientsController } from './ingredients/ingredients.controller';
 import { IngredientsService } from './ingredients/ingredients.service';
 import { IngredientSchema } from './ingredients/ingredients.schema';

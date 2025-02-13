@@ -8,6 +8,10 @@ import { CreateRecetteDto } from './dto/createRecettes.dto';
 export class RecettesService {
   constructor(@InjectModel('Recette') private recetteModel: Model<Recette>) {}
 
+  async getRecetteById(id: string) {
+    return await this.recetteModel.findOne({ _id: id }).exec();
+  }
+
   get() {
     return this.recetteModel.aggregate([
       {
@@ -28,12 +32,17 @@ export class RecettesService {
         .populate('ingredients.ingredient')
         .exec();
     } catch (error) {
-      throw new Error(
-        `Erreur lors de la récupération des recettes: ${error.message}`,
-      );
+      if (error instanceof Error) {
+        throw new Error(
+          `Erreur lors de la récupération des recettes: ${error.message}`,
+        );
+      } else {
+        throw new Error(
+          'Erreur inconnue lors de la  récupération des recettes',
+        );
+      }
     }
   }
-
   create(createRecetteDto: any): Promise<Recette> {
     const createdRecette = new this.recetteModel(createRecetteDto);
     return createdRecette.save();

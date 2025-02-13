@@ -20,8 +20,14 @@ export class RecettesController {
     return this.recettesService.getRecettes();
   }
 
+  @Get(':id')
+  async getRecette(@Param('id') id: string) {
+    return await this.recettesService.getRecetteById(id);
+  }
+
   @Post()
-  async create(@Body() createRecetteDto: CreateRecetteDto) {
+  async createRecette(@Body() createRecetteDto: CreateRecetteDto) {
+    console.log(createRecetteDto); // Vérifie que les données reçues sont correctes
     return this.recettesService.create(createRecetteDto);
   }
 

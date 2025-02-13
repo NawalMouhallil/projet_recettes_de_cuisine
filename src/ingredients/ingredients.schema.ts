@@ -7,5 +7,5 @@ export const IngredientSchema = new Schema({
 
 export interface Ingredient extends Document {
   nom: string; // Nom de l'ingrédient
-  unite: string; // Unité de mesure
+  unite: string; // Unité de mesure (ex: grammes, litres, etc.)
 }

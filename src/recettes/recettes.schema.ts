@@ -31,7 +31,7 @@ export const getRecettes = async () => {
     return recettes;
   } catch (error) {
     throw new Error(
-      `Erreur lors de la récupération des recettes: ${error.message}`,
+      `Erreur lors de la récupération des recettes: ${(error as Error).message}`,
     );
   }
 };

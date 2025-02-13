@@ -1,33 +1,27 @@
-import {
-  IsString,
-  IsArray,
-  ValidateNested,
-  IsNumber,
-  IsNotEmpty,
-} from 'class-validator';
+import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
-class IngredientQuantiteDto {
-  @IsString()
-  @IsNotEmpty()
-  ingredient: string;
-
-  @IsNumber()
-  @IsNotEmpty()
-  quantite: number;
-}
-
 export class CreateRecetteDto {
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   nom: string;
 
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   description: string;
 
-  @IsArray()
+  @IsNotEmpty()
   @ValidateNested({ each: true })
-  @Type(() => IngredientQuantiteDto)
-  ingredients: IngredientQuantiteDto[];
+  @Type(() => IngredientDto)
+  ingredients: IngredientDto[];
+}
+
+export class IngredientDto {
+  @IsNotEmpty()
+  @IsString()
+  nom: string;
+
+  @IsNotEmpty()
+  @IsString()
+  quantite: string;
 }
