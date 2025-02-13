@@ -11,6 +11,13 @@ export class CreateIngredientDto {
   unite: string;
 }
 
+export class CreateRecipeDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => IngredientQuantiteDto)
+  ingredients: IngredientQuantiteDto[];
+}
+
 class IngredientQuantiteDto {
   @IsString()
   @IsNotEmpty()
@@ -19,19 +26,4 @@ class IngredientQuantiteDto {
   @IsString()
   @IsNotEmpty()
   quantite: string;
-}
-
-export class CreateRecetteDto {
-  @IsString()
-  @IsNotEmpty()
-  nom: string;
-
-  @IsString()
-  @IsNotEmpty()
-  description: string;
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => IngredientQuantiteDto)
-  ingredients: IngredientQuantiteDto[];
 }

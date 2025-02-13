@@ -26,7 +26,7 @@ export class IngredientsService {
 
   async update(
     id: string,
-    updateIngredientDto: CreateIngredientDto,
+    updateIngredientDto: Partial<CreateIngredientDto>,
   ): Promise<Ingredient> {
     return this.ingredientModel
       .findByIdAndUpdate(id, updateIngredientDto, { new: true })

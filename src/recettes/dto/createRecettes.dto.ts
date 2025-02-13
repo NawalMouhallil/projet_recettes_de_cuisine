@@ -1,4 +1,9 @@
-import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateRecetteDto {
@@ -19,9 +24,9 @@ export class CreateRecetteDto {
 export class IngredientDto {
   @IsNotEmpty()
   @IsString()
-  nom: string;
+  ingredient: string;
 
   @IsNotEmpty()
-  @IsString()
-  quantite: string;
+  @IsNumber()
+  quantite: number;
 }

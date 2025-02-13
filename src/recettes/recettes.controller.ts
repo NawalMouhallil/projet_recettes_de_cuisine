@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { CreateRecetteDto } from './dto/createRecettes.dto';
 import { RecettesService } from './recettes.service';
@@ -31,10 +31,10 @@ export class RecettesController {
     return this.recettesService.create(createRecetteDto);
   }
 
-  @Put(':id')
+  @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateRecetteDto: CreateRecetteDto,
+    @Body() updateRecetteDto: Partial<CreateRecetteDto>,
   ): Promise<Recette> {
     return this.recettesService.update(id, updateRecetteDto);
   }

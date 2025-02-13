@@ -50,7 +50,7 @@ export class RecettesService {
 
   async update(
     id: string,
-    updateRecetteDto: CreateRecetteDto,
+    updateRecetteDto: Partial<CreateRecetteDto>,
   ): Promise<Recette> {
     return this.recetteModel
       .findByIdAndUpdate(id, updateRecetteDto, { new: true })
