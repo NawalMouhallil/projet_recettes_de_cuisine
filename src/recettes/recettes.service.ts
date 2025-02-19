@@ -57,7 +57,8 @@ export class RecettesService {
       .exec();
   }
 
-  async delete(id: string): Promise<Recette> {
-    return this.recetteModel.findByIdAndDelete(id).exec();
+  async delete(id: string): Promise<null> {
+    await this.recetteModel.findByIdAndDelete(id).exec();
+    return null;
   }
 }

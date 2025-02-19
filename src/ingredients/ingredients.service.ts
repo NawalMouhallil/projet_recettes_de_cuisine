@@ -33,7 +33,8 @@ export class IngredientsService {
       .exec();
   }
 
-  async delete(id: string): Promise<Ingredient> {
-    return this.ingredientModel.findByIdAndDelete(id).exec();
+  async delete(id: string): Promise<null> {
+    await this.ingredientModel.findByIdAndDelete(id).exec();
+    return null;
   }
 }

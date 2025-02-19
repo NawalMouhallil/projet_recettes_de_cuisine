@@ -6,7 +6,7 @@ import {
   Param,
   Patch,
   Post,
-} from '@nestjs/common';
+  HttpCode} from '@nestjs/common';
 import { CreateRecetteDto } from './dto/createRecettes.dto';
 import { RecettesService } from './recettes.service';
 import { Recette } from './recettes.schema';
@@ -40,6 +40,7 @@ export class RecettesController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   async delete(@Param('id') id: string) {
     return this.recettesService.delete(id);
   }
